@@ -7,15 +7,15 @@ use Illuminate\Http\Request;
 class MainController extends Controller
 {
     public function Index() {
-        return view('Index');
+        return view('index');
     }
 
     public function LoadJoin() {
-        return view('Join');
+        return view('join');
     }
 
     public function JoinParty(Request $request) {
-        return view('Join');
+        return view('join');
     }
 
 
