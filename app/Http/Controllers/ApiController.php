@@ -40,7 +40,7 @@ class ApiController extends Controller
         }
 
         $player = Player::create([
-            'name' => $request->input('name')
+            'name' => $request->input('nickname')
         ]);
 
         $party->players()->attach($player->id);
