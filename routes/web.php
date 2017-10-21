@@ -12,6 +12,5 @@
 */
 
 Route::get('/', 'MainController@Index');
-Route::get('/join', 'MainController@LoadJoin');
 
 Route::post('/join', 'MainController@JoinParty');
