@@ -25,9 +25,6 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#services">Games</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#contact">Meet Us</a>
-          </li>
         </ul>
       </div>
     </div>
