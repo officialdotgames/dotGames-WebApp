@@ -22,6 +22,6 @@ Route::post('/join', 'ApiController@JoinParty');
 Route::get('/party/{id}/poll', 'ApiController@PollParty');
 Route::post('/party/start', 'ApiController@StartParty');
 
-Route::get('/madlib', 'ApiController@ReadMadlib');
+Route::post('/madlib', 'ApiController@ReadMadlib');
 
 
