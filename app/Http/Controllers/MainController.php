@@ -30,13 +30,31 @@ class MainController extends Controller
         $party->players()->attach($player);
 
 
-        return redirect()
-                ->action('MainController@ShowGame', array('id' => $party->id))
-                ->with('success', 'Welcome '.$request->input('nickname').'!');
+        session( [ 'party_id' => $party->id ] );
+        return redirect('game')
+                    ->with('success', 'Welcome '.$request->input('nickname').'!');
     }
 
-    public function ShowGame($id) {
+    public function ShowGame() {
+        $party_id = session( 'party_id' );
         
-        return view('game', compact($id));
+        return view('game', compact($party_id));
+    }
+
+    public function SubmitMadLib(Request $request) {
+
+        //todo handle prompt index
+        $validator = Validator::make($request->all(), [
+            'party_id' => 'required|integer|max:12',
+            'madlib' => 'required|string|max:255',
+            'prompt_index' => 'required|integer|max:12'
+        ]);
+
+        $party = Party::where('party_id', $request->input('party_id'))->first();
+        if(is_null($party)){
+            return redirect()->back()->withErrors('Error: Party does not exist.');
+        }
+
+
     }
 }

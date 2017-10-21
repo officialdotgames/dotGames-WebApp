@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'MainController@Index');
+Route::get('/game', 'MainController@ShowGame');
 
 Route::post('/join', 'MainController@JoinParty');
-
-Route::get('/game/{id}', 'MainController@ShowGame');
+Route::post('/madlib', 'MainController@SubmitMadLib');
