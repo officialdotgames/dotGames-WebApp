@@ -4,16 +4,16 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>dotGames | @yield('title')</title>
   @yield('head')
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ URL::asset('css/styles.css') }}">
   <link rel="stylesheet" href="{{ URL::asset('css/scrolling-nav.css') }}">
 </head>
 <body id="page-top">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">dotGAMES</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -23,10 +23,10 @@
             <a class="nav-link js-scroll-trigger" href="#about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+            <a class="nav-link js-scroll-trigger" href="#services">Games</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            <a class="nav-link js-scroll-trigger" href="#contact">Meet Us</a>
           </li>
         </ul>
       </div>
@@ -35,7 +35,7 @@
   @yield('content')
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+      <p class="m-0 text-center text-white">Copyright &copy; dotGAMES 2017</p>
     </div>
   </footer>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
