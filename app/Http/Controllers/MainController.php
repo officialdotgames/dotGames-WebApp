@@ -14,7 +14,9 @@ class MainController extends Controller
         return view('Join');
     }
 
-    public function JoinParty() {
+    public function JoinParty(Request $request) {
         return view('Join');
     }
+
+
 }
