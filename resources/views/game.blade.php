@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="row justify-content-md-center">
-      <form method="POST" action="{{ url('/join') }}" class="lead col-md-4">
+      <form method="POST" action="{{ url('/madlib') }}" class="lead col-md-4">
         <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
         <div class="form-group">
           <input type="text" class="form-control" name="madLib" placeholder="Mad Lib" required>

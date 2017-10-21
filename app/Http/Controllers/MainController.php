@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Party;
 use App\Player;
+use App\MadLib;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -31,17 +32,20 @@ class MainController extends Controller
 
 
         session( [ 'party_id' => $party->id ] );
+        session( [ 'prompt_index' => 0 ] );
         return redirect('game')
                     ->with('success', 'Welcome '.$request->input('nickname').'!');
     }
 
     public function ShowGame() {
         $party_id = session( 'party_id' );
-        
-        return view('game', compact($party_id));
+        $prompt_index = session('prompt_index');
+        return view('game', compact($party_id, $prompt_index));
     }
 
     public function SubmitMadLib(Request $request) {
+
+        
 
         //todo handle prompt index
         $validator = Validator::make($request->all(), [
@@ -50,6 +54,8 @@ class MainController extends Controller
             'prompt_index' => 'required|integer|max:12'
         ]);
 
+        //$result = $this->GetPromptString(1, 1);
+        
         $party = Party::where('party_id', $request->input('party_id'))->first();
         if(is_null($party)){
             return redirect()->back()->withErrors('Error: Party does not exist.');
@@ -57,4 +63,13 @@ class MainController extends Controller
 
 
     }
+
+    private function GetPromptString($madLibId, $promptIndex) {
+        $madlib = MadLib::find($madLibId);
+        $json = json_decode($madlib->json);
+
+        return $json->prompts[$promptIndex];
+    }
 }
+
+
