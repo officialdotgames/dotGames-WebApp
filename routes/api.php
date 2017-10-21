@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/create/party', 'ApiController@CreateParty');
+Route::post('/join', 'ApiController@JoinParty');
 
 Route::get('/madlib', function() {
     return response()->json([

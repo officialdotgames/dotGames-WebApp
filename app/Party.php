@@ -14,4 +14,8 @@ class Party extends Model
         return $this->belongsTo('App\Game');
     }
 
+    public function players() {
+        return $this->belongsToMany('App\Player', 'party_players');
+    }
+
 }
