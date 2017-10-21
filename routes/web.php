@@ -14,3 +14,5 @@
 Route::get('/', 'MainController@Index');
 
 Route::post('/join', 'MainController@JoinParty');
+
+Route::get('/game/{id}', 'MainController@ShowGame');

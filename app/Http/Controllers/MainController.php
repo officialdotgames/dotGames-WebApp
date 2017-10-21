@@ -29,6 +29,14 @@ class MainController extends Controller
         ]);
         $party->players()->attach($player);
 
-        return redirect('game')->with('success', 'Welcome '.$request->input('nickname').'!');
+
+        return redirect()
+                ->action('MainController@ShowGame', array('id' => $party->id))
+                ->with('success', 'Welcome '.$request->input('nickname').'!');
+    }
+
+    public function ShowGame($id) {
+        
+        return view('game', compact($id));
     }
 }
