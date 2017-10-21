@@ -11,6 +11,11 @@ class ApiController extends Controller
     public function CreateParty(Request $request) {
 
         $game = Game::where('name', $request->input('game-name'))->first();
+
+        if(is_null($game)) {
+            return response(404);
+        }
+
         $party_code = rand(100000, 999999);
 
         Party::create([
