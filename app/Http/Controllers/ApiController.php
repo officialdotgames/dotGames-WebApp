@@ -24,7 +24,9 @@ class ApiController extends Controller
         Party::create([
             'alexa_id' => $request->input('alexa_id'),
             'game_id' => $game->id,
-            'party_code' => $party_code
+            'party_code' => $party_code,
+            'started' => 0,
+            'ended' => 0
         ]);
 
         return response()->json([
