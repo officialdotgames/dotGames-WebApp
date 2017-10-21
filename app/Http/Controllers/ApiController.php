@@ -14,7 +14,9 @@ class ApiController extends Controller
         $game = Game::where('name', $request->input('game_name'))->first();
 
         if(is_null($game)) {
-            return response(404);
+            return response()->json([
+                'error_message' => "Unable to find the game."
+            ], 404);
         }
 
         $party_code = rand(100000, 999999);
@@ -30,22 +32,5 @@ class ApiController extends Controller
         ]);
     }
 
-    public function JoinParty(Request $request) {
-        // Code, name, 
-        // returns party id 
-        $party = Party::where('party_code', $request->input('party_code'))->first();
 
-        if(is_null($party)){
-            return response(404);
-        }
-
-        $player = Player::create([
-            'name' => $request->input('nickname')
-        ]);
-
-        $party->players()->attach($player->id);
-
-        return $party;
-
-    }
 }

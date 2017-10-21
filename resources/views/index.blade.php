@@ -6,13 +6,13 @@
   <div class="container text-center">
     <h1><a href="{{url('/')}}">dotGAMES</a></h1>
     <div class="row justify-content-md-center">
-      <div id="error-messages" class="col-md-4">
+      <div class="col-md-4">
         @include('layouts.messages')
       </div>
     </div>
     <div class="row justify-content-md-center">
-      <form id="form-join-party" class="lead col-md-4">
-        <!--<input type="hidden" name="_token" value="{{ csrf_token() }}"></input>-->
+      <form method="POST" action="{{ url('/join') }}" class="lead col-md-4">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
         <div class="form-group">
           <input type="text" class="form-control" name="party_code" placeholder="Party Code" required>
         </div>
