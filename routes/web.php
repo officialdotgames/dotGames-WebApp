@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'MainController@Index');
+Route::get('/lobby', 'MainController@ShowLobby');
 Route::get('/game', 'MainController@ShowGame');
 
 Route::post('/join', 'MainController@JoinParty');
