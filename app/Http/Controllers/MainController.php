@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Party;
 use Illuminate\Http\Request;
+use Validator;
 
 class MainController extends Controller
 {
@@ -10,13 +12,16 @@ class MainController extends Controller
         return view('index');
     }
 
-    public function LoadJoin() {
-        return view('join');
-    }
-
     public function JoinParty(Request $request) {
-        return view('join');
+        $validator = Validator::make($request->all(), [
+            'party' => 'required|string|max:255',
+            'nickname' => 'required|string|max:255',
+        ]);
+
+        $party = Party::where('party_code', $request->input('party'))->first();
+        if(is_null($party)){
+            return redirect()->back()->withErrors('Error: Invalid room code.');
+        }
+        return view('index')->with('success', 'Welcome '.$request->input('nickname').'!');
     }
-
-
 }
