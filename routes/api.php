@@ -18,3 +18,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/create/party', 'ApiController@CreateParty');
+
+Route::get('/madlib', function() {
+    return response()->json([
+        'lines' => [
+            'Be kind to your Dog-footed Carrots', 
+            'For a duck may be somebody`s Jim Carrey,',
+            'Be kind to your Carrots in Topeka',
+            'Where the weather is always Tiny.',
+            'You may think that this is the Nigel Thornberry,',
+            'Well it is.'
+        ]
+    ]);
+});
+
+
