@@ -4,7 +4,7 @@
 @section('content')
 <header class="bg-primary text-white">
   <div class="container text-center">
-    <h1><a href="{{url('/')}}">Enter a ___</a></h1>
+    <h1>Enter a ___</h1>
     <div class="row justify-content-md-center">
       <div class="col-md-4">
         @include('layouts.messages')
@@ -21,5 +21,4 @@
     </div>
   </div>
 </header>
-
 @endsection
