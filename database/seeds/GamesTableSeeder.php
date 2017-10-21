@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Game;
 
-
-class DatabaseSeeder extends Seeder
+class GamesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(GamesTableSeeder::class);
+        $madlibs = Game::create([
+            'name' => 'Mad Libs'
+        ]);
     }
 }
