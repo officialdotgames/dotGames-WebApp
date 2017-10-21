@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Party extends Model
 {
     protected $fillable = [
-        'alexa_id', 'game_id', 'party_code'
+        'alexa_id', 'game_id', 'party_code', 'started', 'ended'
     ];
 
     public function game() {

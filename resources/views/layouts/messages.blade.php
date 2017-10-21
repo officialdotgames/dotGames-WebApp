@@ -4,7 +4,7 @@
   </div>
 @endif
 @if(Session::has('information'))
-  <div class="alert alert-homebase" role="alert">
+  <div class="alert alert-info" role="alert">
     {{ Session::get('information') }}
   </div>
 @endif

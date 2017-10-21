@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Party;
+use App\Player;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -22,6 +23,12 @@ class MainController extends Controller
         if(is_null($party)){
             return redirect()->back()->withErrors('Error: Invalid room code.');
         }
+
+        $player = Player::create([
+          'name' => $request->input('nickname')
+        ]);
+        $party->players()->attach($player);
+
         return redirect('game')->with('success', 'Welcome '.$request->input('nickname').'!');
     }
 }
