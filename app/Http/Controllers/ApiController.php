@@ -26,7 +26,8 @@ class ApiController extends Controller
             'game_id' => $game->id,
             'party_code' => $party_code,
             'started' => 0,
-            'ended' => 0
+            'ended' => 0,
+            'madlib_id' => 1
         ]);
 
         return response()->json([
