@@ -14,7 +14,9 @@ class ApiController extends Controller
         $game = Game::where('name', $request->input('game_name'))->first();
 
         if(is_null($game)) {
-            return response(404);
+            return response()->json([
+                'error_message' => "Unable to find the game."
+            ], 404);
         }
 
         $party_code = rand(100000, 999999);

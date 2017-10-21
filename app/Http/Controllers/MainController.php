@@ -15,11 +15,11 @@ class MainController extends Controller
 
     public function JoinParty(Request $request) {
         $validator = Validator::make($request->all(), [
-            'party' => 'required|string|max:255',
+            'party_code' => 'required|string|max:6',
             'nickname' => 'required|string|max:255',
         ]);
 
-        $party = Party::where('party_code', $request->input('party'))->first();
+        $party = Party::where('party_code', $request->input('party_code'))->first();
         if(is_null($party)){
             return redirect()->back()->withErrors('Error: Invalid room code.');
         }
@@ -29,6 +29,6 @@ class MainController extends Controller
         ]);
         $party->players()->attach($player);
 
-        return redirect('/')->with('success', 'Welcome '.$request->input('nickname').'!');
+        return redirect('game')->with('success', 'Welcome '.$request->input('nickname').'!');
     }
 }
