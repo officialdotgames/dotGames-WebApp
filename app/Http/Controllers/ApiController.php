@@ -40,7 +40,9 @@ class ApiController extends Controller
             'ended' => 0])->first();
 
         if(is_null($party)){
-            return response(404);
+            return response()->json([
+                'error_message' => 'Unable to find party.'
+            ], 404);
         }
 
         $player = Player::create([
@@ -57,14 +59,20 @@ class ApiController extends Controller
         $party = Party::find($id);
 
         if(is_null($party)) {
-            return response(404);
+            return response()->json([
+                'error_message' => 'Unable to find party.'
+            ], 404);
         }
 
         if($party->started == 0) {
-            return response(400);
+            return response()->json([
+                'error_message' => 'Party has not started.'
+            ], 400);
         }
 
-        return response(200);
+        return response()->json([
+            'message' => 'No longer need to poll. Game is starting.'
+        ], 200);
 
     }
 
@@ -72,20 +80,26 @@ class ApiController extends Controller
         $party = Party::where('alexa_id', $request->input('alexa_id'))->first();
 
         if(is_null($party)) {
-            return response(404);
+            return response()->json([
+                'error_message' => 'Unable to find party.'
+            ], 404);
         }
 
         $party->started = 1;
         $party->save();
 
-        return response(200);
+        return response()->json([
+            'message' => 'Successfully started the party.'
+        ], 200);
     }
 
     public function ReadMadlib(Request $request) {
        $party = Party::where('alexa_id', $request->input('alexa_id'))->first();
 
         if(is_null($party)) {
-            return response(404);
+            return response()->json([
+                'error_message' => 'Unable to find party.'
+            ], 404);
         }
 
        $party->ended = 1;
