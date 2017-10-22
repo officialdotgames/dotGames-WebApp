@@ -8,6 +8,7 @@ use App\Lib;
 use App\Party;
 use App\Player;
 use App\MadlibWord;
+use App\Madlib;
 
 class ApiController extends Controller
 {
@@ -29,7 +30,7 @@ class ApiController extends Controller
             'party_code' => $party_code,
             'started' => 0,
             'ended' => 0,
-            'madlib_id' => 1
+            'madlib_id' => Madlib::inRandomOrder()->first()->id 
         ]);
 
         return response()->json([
