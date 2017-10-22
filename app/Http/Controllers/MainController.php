@@ -31,14 +31,14 @@ class MainController extends Controller
         ]);
         $party->players()->attach($player);
 
-        session( [ 'party_id' => $party->id ] );
+        session( [ 'party' => $party ] );
         session( [ 'prompt_index' => 0 ] );
-        return redirect('game')
+        return redirect('lobby')
                     ->with('success', 'Welcome '.$request->input('nickname').'!');
     }
 
     public function ShowGame() {
-        $party_id = session( 'party_id' );
+        $party_id = session( 'party' )->id;
         $prompt_index = session('prompt_index');
         return view('game', compact($party_id, $prompt_index));
     }
@@ -71,7 +71,7 @@ class MainController extends Controller
         return $json->prompts[$promptIndex];
     }
 
-    public function ShowLobby(){
+    public function ShowLobby() {
         $party = session('party');
         if(is_null($party)){
           return redirect()->action('MainController@Index')->withErrors('There was an error joining the party.');

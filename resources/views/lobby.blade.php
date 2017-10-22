@@ -23,7 +23,7 @@
 poll();
 function poll(){
   $.ajax({
-    "url": "{{config('app.url')}}/api/party/2/poll",
+    "url": "/api/party/{{ $party->id }}/poll",
     "method": "GET",
     "error": function (errormessage) {
       $('#players').html('');
@@ -32,7 +32,8 @@ function poll(){
       });
     }
   }).done(function (response) {
-    window.location.href = "http://stackoverflow.com";
+
+    window.location.href = "/game";
   });
 }
 
