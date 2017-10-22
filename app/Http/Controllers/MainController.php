@@ -82,7 +82,7 @@ class MainController extends Controller
         $prompt_index = $request->input('prompt_index');
 
         if($prompt_index >= $party->madlib->num_prompts -1) {
-            return redirect('end')->with('success', "You've entered all of the words. Once everyone is finished, ask Alexa to 'read lib'.");
+            return redirect('end')->with('success', "Finished!");
         } else {
 
             session([ 'prompt_index' => $prompt_index + 1,
