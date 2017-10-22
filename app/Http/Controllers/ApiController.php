@@ -141,7 +141,7 @@ class ApiController extends Controller
         
         $lib = Lib::create([
             'party_id' => $party->id,
-            'lib' => join('\n', $out['lines'])
+            'lib' => join('<br>', $out['lines'])
         ]);
 
         return $out;
