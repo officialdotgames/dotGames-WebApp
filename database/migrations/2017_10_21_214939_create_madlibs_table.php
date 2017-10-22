@@ -19,7 +19,7 @@ class CreateMadlibsTable extends Migration
 
             $table->string('title');
             $table->integer('num_prompts');
-            $table->string('json');
+            $table->longtext('json');
 
         });
     }
