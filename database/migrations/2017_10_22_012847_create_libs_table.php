@@ -16,7 +16,7 @@ class CreateLibsTable extends Migration
         Schema::create('libs', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('party_id');
-            $table->foreign('party_id')->references('id')->on('parties'); 
+            $table->foreign('party_id')->references('id')->on('parties');
             $table->longText('lib');
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ class CreateLibsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('results');
+        Schema::dropIfExists('libs');
     }
 }

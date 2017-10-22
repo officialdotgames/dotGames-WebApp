@@ -19,6 +19,10 @@ class CreatePartiesTable extends Migration
             $table->unsignedInteger('game_id');
             $table->foreign('game_id')->references('id')->on('games');
             $table->string('party_code', 6);
+            $table->unsignedInteger('madlib_id')->nullable();
+            $table->foreign('madlib_id')->references('id')->on('madlibs');
+            $table->integer('started');
+            $table->integer('ended');
             $table->timestamps();
         });
     }
@@ -30,7 +34,6 @@ class CreatePartiesTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('parties');
     }
 }
