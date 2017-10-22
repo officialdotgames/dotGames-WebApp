@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Game;
 use App\Party;
 use App\Player;
+use App\MadlibWord;
 
 class ApiController extends Controller
 {
@@ -82,7 +83,7 @@ class ApiController extends Controller
     }
 
     public function StartParty(Request $request) {
-        $party = Party::where('alexa_id', $request->input('alexa_id'))->first();
+        $party = Party::where('alexa_id', $request->input('alexa_id'))->orderBy('id', 'desc')->first();
 
         if(is_null($party)) {
             return response()->json([
@@ -99,7 +100,7 @@ class ApiController extends Controller
     }
 
     public function ReadMadlib(Request $request) {
-       $party = Party::where('alexa_id', $request->input('alexa_id'))->first();
+        $party = Party::where('alexa_id', $request->input('alexa_id'))->orderBy('id', 'desc')->first();
 
         if(is_null($party)) {
             return response()->json([
@@ -107,19 +108,37 @@ class ApiController extends Controller
             ], 404);
         }
 
-       $party->ended = 1;
-       $party->save();
+        $words = MadlibWord::where('party_id', $party->id)->orderBy('prompt_idx')->get();
 
-        return response()->json([
-            'lines' => [
-                'Be kind to your Dog-footed Carrots',
-                'For a duck may be somebody`s Jim Carrey,',
-                'Be kind to your Carrots in Topeka',
-                'Where the weather is always Tiny.',
-                'You may think that this is the Nigel Thornberry,',
-                'Well it is.'
-            ]
-        ]);
+        $sorted = array();
+
+        foreach ( $words as $word ) {
+            $sorted[$word['prompt_idx']][] = $word;
+        }
+
+        $selected = [];
+        foreach($sorted as $s) {
+            array_push($selected, $s[array_rand($s)]->submitted_word);
+        } 
+       
+        $party->ended = 1;
+        $party->save(); 
+
+        $madlib = $party->madlib;
+
+        $json = json_decode($madlib->json);
+        $out = array('lines' => array());
+
+        $lib_idx = 0;
+        foreach($json->lib as $line) {
+            while(strpos($line, '[]') !== false) {
+                $line = preg_replace('/\[\]/', $selected[$lib_idx], $line, 1);
+                $lib_idx += 1;
+            }
+            array_push($out['lines'], $line);
+        }
+
+        return $out;
 
     }
 }
