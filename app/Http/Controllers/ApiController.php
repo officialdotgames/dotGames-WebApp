@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Game;
+use App\Lib;
 use App\Party;
 use App\Player;
 
@@ -109,6 +110,12 @@ class ApiController extends Controller
 
        $party->ended = 1;
        $party->save();
+
+       //TODO: Update $lib with final result.
+       $lib = Lib::create([
+         'party_id' => $party->id,
+         'lib' => $lib
+       ]);
 
         return response()->json([
             'lines' => [
