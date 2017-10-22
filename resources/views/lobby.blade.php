@@ -11,7 +11,7 @@
         @include('layouts.messages')
       </div>
     </div>
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-md-center text-center">
       <span id="players"></span>
     </div>
   </div>
