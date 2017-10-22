@@ -16,7 +16,9 @@ class MainController extends Controller
         return view('index');
     }
 
-
+    public function EndGame() {
+        return view('end');
+    }
 
     public function JoinParty(Request $request) {
         $validator = Validator::make($request->all(), [
