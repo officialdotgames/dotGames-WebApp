@@ -20,10 +20,10 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            <a class="nav-link js-scroll-trigger" href="{{ Request::is('/') ? '#about' : url('/#about') }}">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#services">Games</a>
+            <a class="nav-link js-scroll-trigger" href="{{ Request::is('/') ? '#services' : url('/#services') }}">Games</a>
           </li>
         </ul>
       </div>

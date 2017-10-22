@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Party;
-use App\Player;
+use App\Lib;
 use App\Madlib;
 use App\MadlibWord;
+use App\Party;
+use App\Player;
 use Illuminate\Http\Request;
 use Session;
 use Validator;
@@ -13,7 +14,9 @@ use Validator;
 class MainController extends Controller
 {
     public function Index() {
-        return view('index');
+        $recent = Lib::orderBy('created_at', 'desc')->first();
+        $lib = $recent->lib;
+        return view('index', compact('lib'));
     }
 
     public function EndGame() {

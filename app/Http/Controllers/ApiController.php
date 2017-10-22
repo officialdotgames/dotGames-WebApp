@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Game;
+use App\Lib;
 use App\Party;
 use App\Player;
 use App\MadlibWord;
@@ -137,6 +138,11 @@ class ApiController extends Controller
             }
             array_push($out['lines'], $line);
         }
+        
+        $lib = Lib::create([
+            'party_id' => $party->id,
+            'lib' => join('\n', $out['lines'])
+        ]);
 
         return $out;
 

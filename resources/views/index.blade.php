@@ -41,11 +41,10 @@
     <div class="row">
       <div class="col-lg-8 mx-auto">
         <h2>Available Games</h2>
-        <p class="lead">
-          <ul>
-            <li>MadLibs</li>
-          </ul>
-        </p>
+        <p class="lead">Madlibs</p>
+        @if(!is_null($lib))
+        <p>Recent Madlib: {{$lib}}</p>
+        @endif
       </div>
     </div>
   </div>
