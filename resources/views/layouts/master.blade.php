@@ -29,7 +29,10 @@
       </div>
     </div>
   </nav>
-  @yield('content')
+  <div class="wrapper">
+    @yield('content')
+    <div class="push"></div>
+  </div>
   <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; dotGAMES 2017</p>

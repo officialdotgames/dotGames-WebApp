@@ -43,7 +43,7 @@
         <h2>Available Games</h2>
         <p class="lead">Madlibs</p>
         @if(!is_null($lib))
-        <p>Recent Madlib: {{$lib}}</p>
+        <p>Recent Madlib:<br /> {!!$lib!!}</p>
         @endif
       </div>
     </div>
