@@ -14,8 +14,10 @@ use Validator;
 class MainController extends Controller
 {
     public function Index() {
-        $recent = Lib::orderBy('created_at', 'desc')->first();
-        $lib = $recent->lib;
+        $lib = Lib::orderBy('created_at', 'desc')->first();
+        if(!is_null($recent)){
+          $lib = $lib->lib;
+        }
         return view('index', compact('lib'));
     }
 
