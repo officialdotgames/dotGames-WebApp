@@ -36,8 +36,8 @@ class ApiController extends Controller
     }
 
     public function JoinParty(Request $request) {
-        // Code, name, 
-        // returns party id 
+        // Code, name,
+        // returns party id
         $party = Party::where([
             'party_code' => $request->input('party_code'),
             'ended' => 0])->first();
@@ -59,7 +59,7 @@ class ApiController extends Controller
     }
 
     public function PollParty(Request $request, $id) {
-        $party = Party::find($id);
+        $party = Party::with('players')->find($id);
 
         if(is_null($party)) {
             return response()->json([
@@ -69,12 +69,14 @@ class ApiController extends Controller
 
         if($party->started == 0) {
             return response()->json([
-                'error_message' => 'Party has not started.'
+                'error_message' => 'Party has not started.',
+                'players' => $party->players
             ], 400);
         }
 
         return response()->json([
-            'message' => 'No longer need to poll. Game is starting.'
+            'message' => 'No longer need to poll. Game is starting.',
+            'players' => $party->players
         ], 200);
 
     }
@@ -110,7 +112,7 @@ class ApiController extends Controller
 
         return response()->json([
             'lines' => [
-                'Be kind to your Dog-footed Carrots', 
+                'Be kind to your Dog-footed Carrots',
                 'For a duck may be somebody`s Jim Carrey,',
                 'Be kind to your Carrots in Topeka',
                 'Where the weather is always Tiny.',

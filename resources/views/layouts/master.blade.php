@@ -41,5 +41,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
   <script src="{{ URL::asset('js/scrolling-nav.js') }}"></script>
   <script src="{{ URL::asset('js/index.js') }}"></script>
+  @yield('footer')
 </body>
 </html>

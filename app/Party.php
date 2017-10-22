@@ -18,4 +18,8 @@ class Party extends Model
         return $this->belongsToMany('App\Player', 'party_players');
     }
 
+    public function madlib() {
+        return $this->belongsTo('App\Madlib');
+    }
+
 }
