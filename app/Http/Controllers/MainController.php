@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Party;
 use App\Player;
-use App\MadLib;
+use App\Madlib;
 use App\MadlibWord;
 use Illuminate\Http\Request;
 use Session;
@@ -35,7 +35,7 @@ class MainController extends Controller
         $party->players()->attach($player);
 
         session( [ 'party' => $party ] );
-        
+
         return redirect('lobby')
                     ->with('success', 'Welcome '.$request->input('nickname').'!');
     }
@@ -45,7 +45,7 @@ class MainController extends Controller
     public function ShowGame() {
         $party = session( 'party' );
         $prompt_index = session('prompt_index');
-        
+
 
         $prompt = $this->GetPromptString($party->madlib_id, $prompt_index);
 
@@ -56,21 +56,21 @@ class MainController extends Controller
 
     public function SubmitMadLib(Request $request) {
 
-        
+
         $validator = Validator::make($request->all(), [
             'party_id' => 'required|integer|max:12',
             'madLib' => 'required|string|max:255',
             'prompt_index' => 'required|integer|max:12'
         ]);
 
-        
-        
+
+
         $party = Party::find($request->input('party_id'));
         if(is_null($party)){
             return redirect()->back()->withErrors('Error: Party does not exist.');
         }
 
-        
+
         MadlibWord::create([
             'prompt_idx' => $request->input('prompt_index'),
             'submitted_word' => $request->input('madLib'),
@@ -82,10 +82,10 @@ class MainController extends Controller
         if($prompt_index >= $party->madlib->num_prompts -1) {
             return redirect('end')->with('success', "You've entered all of the words. Once everyone is finished, ask Alexa to 'read lib'.");
         } else {
-        
+
             session([ 'prompt_index' => $prompt_index + 1,
                     'party' => $party ] );
-            
+
         return redirect('game')->with('success', 'Submitted word!');
         }
     }
@@ -106,5 +106,3 @@ class MainController extends Controller
         return view('lobby', compact('party'));
     }
 }
-
-
