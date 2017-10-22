@@ -30,7 +30,7 @@ class ApiController extends Controller
             'party_code' => $party_code,
             'started' => 0,
             'ended' => 0,
-            'madlib_id' => Madlib::inRandomOrder()->first()->id 
+            'madlib_id' => 3//Madlib::inRandomOrder()->first()->id 
         ]);
 
         return response()->json([
