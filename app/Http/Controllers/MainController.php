@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Party;
 use App\Player;
-use App\MadLib;
+use App\Madlib;
 use App\MadlibWord;
 use Illuminate\Http\Request;
 use Session;
@@ -16,7 +16,9 @@ class MainController extends Controller
         return view('index');
     }
 
-
+    public function EndGame() {
+        return view('end');
+    }
 
     public function JoinParty(Request $request) {
         $validator = Validator::make($request->all(), [
