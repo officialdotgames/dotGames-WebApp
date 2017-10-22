@@ -18,7 +18,6 @@ class CreatePartyPlayersTable extends Migration
             $table->foreign('party_id')->references('id')->on('parties');
             $table->unsignedInteger('player_id');
             $table->foreign('player_id')->references('id')->on('players');
-            $table->timestamps();
         });
     }
 
