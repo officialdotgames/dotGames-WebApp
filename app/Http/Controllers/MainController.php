@@ -15,7 +15,7 @@ class MainController extends Controller
 {
     public function Index() {
         $lib = Lib::orderBy('created_at', 'desc')->first();
-        if(!is_null($recent)){
+        if(!is_null($lib)){
           $lib = $lib->lib;
         }
         return view('index', compact('lib'));
